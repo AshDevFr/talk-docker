@@ -1,0 +1,11 @@
+.circular {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+}
+
+.reveal section img {
+    background: none;
+    box-shadow: none;
+    border: none;
+}
