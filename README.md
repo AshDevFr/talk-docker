@@ -1,2 +1,2 @@
 # talk-docker
-Presentation &amp; Sample for a Docker presentation
+Slides &amp; Samples for a Docker presentation
