@@ -1,13 +1,4 @@
 web:
   build: .
-  links:
-   - db
   ports:
-   - "9090:9090"
-  environment: 
-   NODE_ENV: development
-   PORT: 9001
-db:
-  image: mongo:latest
-  ports: 
-   - "27017:27017"
+   - "9000:9000"

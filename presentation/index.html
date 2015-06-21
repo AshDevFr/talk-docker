@@ -14,7 +14,7 @@
       <section>
          <h1>Docker & Compose</h1>
 
-         <h3>Run JS application in a clean environment</h3>
+         <h3>Running JS applications in a clean environment</h3>
 
          <p>
             <small>By <a href="http://www.sylvaincau.com" target="_blank">Sylvain CAU</a></small>
@@ -65,8 +65,7 @@
 
             <p class="fragment" data-fragment-index="1">Based on LXC technology</p>
 
-            <p class="fragment" data-fragment-index="2"><img src="/img/what_is_layered_filesystems_sm.png"
-                                                             style="width: 50%;"/></p>
+            <p class="fragment" data-fragment-index="2"><img src="/img/what_is_layered_filesystems_sm.png" style="width: 50%;"/></p>
          </section>
          <section>
             <h3>How is this different from virtual machines?</h3>
@@ -83,23 +82,60 @@
                </div>
             </div>
          </section>
-         <section>
-            <h3></h3>
+      </section>
+      <section>
+            <h2>Let's run some commands</h2>
 
-            <p></p>
-         </section>
+            <pre class="fragment" data-fragment-index="1"><code data-trim>$ docker pull ashdev/docker-spigot</code></pre>
+
+            <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker run -d -it
+            --name=minecraft
+            -p 45678:12345
+            -v /var/minecraft:/home/spigot
+            -e PVP=false
+            ashdev/docker-spigot</code></pre>
+
+            <pre class="fragment" data-fragment-index="3"><code data-trim>$ docker ps</code></pre>
+
+            <pre class="fragment" data-fragment-index="4"><code data-trim>$ docker logs minecraft</code></pre>
+
+            <pre class="fragment" data-fragment-index="5"><code data-trim>$ docker exec -it minecraft bash</code></pre>
       </section>
       <section>
          <section>
-            <h2>Let's run some commands</h2>
+            <h2>Build your own with Dockerfile</h2>
+            <p class="fragment" data-fragment-index="1">Sample of Dockerfile</p>
+            <pre class="fragment" data-fragment-index="1"><code data-trim>FROM google/nodejs
+MAINTAINER AshDev <ashdevfr@gmail.com>
+WORKDIR /home/workspace
 
-            <p></p>
+RUN npm install -g gulp bower
+
+ADD package.json /home/workspace/
+ADD bower.json /home/workspace/
+ADD Gulpfile.js /home/workspace/
+
+RUN npm install
+RUN bower install --config.interactive=false --allow-root
+
+ADD src /home/workspace/
+
+EXPOSE 9000
+VOLUME /home/workspace/
+CMD ["npm", "start"]</code></pre>
          </section>
          <section>
             <section>
-               <h3></h3>
+               <h3>Build it</h3>
 
-               <p></p>
+               <pre class="fragment" data-fragment-index="1"><code data-trim>$ cd /wherever-your-dockerfile-is/</code></pre>
+
+               <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker build --force-rm=true --tag="$USER/node-server:latest" .</code></pre>
+
+               <pre class="fragment" data-fragment-index="3"><code data-trim>$ docker run -d -it
+                  --name=nodeserver
+                  -p 9000:9000
+                  $USER/node-server</code></pre>
             </section>
          </section>
       </section>
@@ -107,35 +143,36 @@
          <section>
             <h2>The Compose's way</h2>
 
-            <p></p>
+            <p class="fragment" data-fragment-index="1">Sample of docker-compose.yml</p>
+            <pre class="fragment" data-fragment-index="1"><code data-trim>web:
+   build: .
+   links:
+   - db
+   ports:
+   - "9000:9000"
+   environment:
+      NODE_ENV: development
+      PORT: 9000
+db:
+   image: mongo:latest
+   ports:
+   - "27017:27017"</code></pre>
+
          </section>
          <section>
             <section>
-               <h3></h3>
+               <h3>Run it</h3>
 
-               <p></p>
-            </section>
-         </section>
-      </section>
-      <section>
-         <section>
-            <h2></h2>
+               <pre class="fragment" data-fragment-index="1"><code data-trim>$ cd /wherever-your-compose-file-is/</code></pre>
 
-            <p></p>
-         </section>
-         <section>
-            <section>
-               <h3></h3>
-
-               <p></p>
+               <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker-compose up</code></pre>
             </section>
          </section>
       </section>
       <section>
          <section>
             <h2>Questions ?</h2>
-
-            <p></p>
+            <img src="/img/whale.gif" alt=""/>
          </section>
          <section>
             <section>
