@@ -5,12 +5,13 @@
   "scripts": {
     "start": "node server/server.js --debug",
     "docker": "gulp; server/server.js --debug",
-    "postinstall": "bower install"
+    "postinstall": "node_modules/bower/bin/bower install"
   },
   "dependencies": {
     "express": "^4.12.4"
   },
   "devDependencies": {
+    "bower": "^1.4.1",
     "gulp": "^3.8.11",
     "gulp-jscs": "^1.6.0",
     "gulp-jshint": "^1.10.0"
