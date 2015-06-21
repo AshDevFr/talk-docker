@@ -64,8 +64,11 @@
             <h2>How it works?</h2>
 
             <p class="fragment" data-fragment-index="1">Based on LXC technology</p>
-
+            
             <p class="fragment" data-fragment-index="2"><img src="/img/what_is_layered_filesystems_sm.png" style="width: 50%;"/></p>
+            <aside class="notes">
+               LXC (Linux Containers) is an operating-system-level virtualization environment for running multiple isolated Linux systems (containers) on a single Linux control host.
+            </aside>
          </section>
          <section>
             <h3>How is this different from virtual machines?</h3>
@@ -114,11 +117,10 @@ RUN npm install -g gulp bower
 ADD package.json /home/workspace/
 ADD bower.json /home/workspace/
 ADD Gulpfile.js /home/workspace/
+ADD src /home/workspace/
 
 RUN npm install
 RUN bower install --config.interactive=false --allow-root
-
-ADD src /home/workspace/
 
 EXPOSE 9000
 VOLUME /home/workspace/
