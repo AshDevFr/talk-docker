@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server/server.js --debug",
     "docker": "gulp; server/server.js --debug",
-    "postinstall": "node_modules/bower/bin/bower install"
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "dependencies": {
     "express": "^4.12.4"
