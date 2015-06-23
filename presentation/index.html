@@ -64,8 +64,7 @@
             <h2>How it works?</h2>
 
             <p class="fragment" data-fragment-index="1">Based on LXC technology</p>
-            
-            <p class="fragment" data-fragment-index="2"><img src="/img/what_is_layered_filesystems_sm.png" style="width: 50%;"/></p>
+
             <aside class="notes">
                LXC (Linux Containers) is an operating-system-level virtualization environment for running multiple isolated Linux systems (containers) on a single Linux control host.
             </aside>
@@ -85,31 +84,55 @@
                </div>
             </div>
          </section>
+         <section>
+            <h3>Containers construction</h3>
+
+            <p class="fragment" data-fragment-index="1"></p>
+            <!--<p class="fragment" data-fragment-index="2"><img src="/img/docker-filesystems-multilayer.png" style="width: 50%;"/></p>-->
+            <p class="fragment" data-fragment-index="1"><img src="/img/what_is_layered_filesystems_sm.png" style="width: 50%;"/></p>
+         </section>
       </section>
       <section>
+         <section>
             <h2>Let's run some commands</h2>
 
+            <h3>Images</h3>
             <pre class="fragment" data-fragment-index="1"><code data-trim>$ docker pull ashdev/docker-spigot</code></pre>
 
-            <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker run -d -it
+            <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker images </code></pre>
+         </section>
+         <section>
+            <h3>Running</h3>
+
+            <pre class="fragment" data-fragment-index="1"><code data-trim>$ docker run -d -it
             --name=minecraft
-            -p 45678:12345
+            -p 25565:25565
+            -p 8123:8123
             -v /var/minecraft:/home/spigot
             -e PVP=false
             ashdev/docker-spigot</code></pre>
 
-            <pre class="fragment" data-fragment-index="3"><code data-trim>$ docker ps</code></pre>
+            <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker run -d --link minecraft:minecraft --name=nginx nginx</code></pre>
 
-            <pre class="fragment" data-fragment-index="4"><code data-trim>$ docker logs minecraft</code></pre>
+            <pre class="fragment" data-fragment-index="3"><code data-trim>$ docker ps
+<small>CONTAINER ID   IMAGE                 COMMAND              CREATED     STATUS      PORTS                          NAMES
+ac52abec9473   root/docker-nginx     "/bin/bash /etc/ngin 13 days ago Up 13 days  0.0.0.0:80->80/tcp             nginx
+17575849e34c   ashdev/docker-spigot  "/bin/sh -c /spigot_ 13 days ago Up 13 days  0.0.0.0:8123->8123/tcp, (...)  minecraft</small></code></pre>
+         </section>
+         <section>
+            <h3>Logs / Exec</h3>
 
-            <pre class="fragment" data-fragment-index="5"><code data-trim>$ docker exec -it minecraft bash</code></pre>
+            <pre class="fragment" data-fragment-index="1"><code data-trim>$ docker logs minecraft</code></pre>
+
+            <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker exec -it minecraft bash</code></pre>
+         </section>
       </section>
       <section>
          <section>
             <h2>Build your own with Dockerfile</h2>
             <p class="fragment" data-fragment-index="1">Sample of Dockerfile</p>
             <pre class="fragment" data-fragment-index="1"><code data-trim>FROM google/nodejs
-MAINTAINER AshDev <ashdevfr@gmail.com>
+MAINTAINER AshDev &lt;ashdevfr@gmail.com&gt;
 WORKDIR /home/workspace
 
 RUN npm install -g gulp bower
