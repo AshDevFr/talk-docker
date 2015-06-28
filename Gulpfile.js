@@ -5,22 +5,19 @@
 (function() {
   'use strict';
   var gulp    = require('gulp'),
-      jscs    = require('gulp-jscs'),
-      jshint  = require('gulp-jshint'),
-      jsFiles = ['**/*.js', '!dist/**/*', '!**/*.min.js', '!node_modules/**/*.js', '!receiver/public/vendor/**/*', '!sender/public/vendor/**/*'];
+      nodemon = require('gulp-nodemon');
 
-  gulp.task('jscs', function() {
-    gulp.src(jsFiles)
-      .pipe(jscs());
+  gulp.task('serve', function() {
+    nodemon({
+      script : 'server/server.js',
+      ext    : 'html js'
+    })
+      .on('restart', function() {
+        console.log('restarted!');
+      });
   });
 
-  gulp.task('lint', function() {
-    gulp.src(jsFiles)
-      .pipe(jshint('.jshintrc'))
-      .pipe(jshint.reporter('jshint-stylish'));
-  });
-
-  gulp.task('default', ['jscs', 'lint'], function() {
-    console.log('Gulp power... ')
+  gulp.task('default', ['serve'], function() {
+    console.log('Gulp power... ');
   });
 })();

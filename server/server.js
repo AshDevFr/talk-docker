@@ -8,8 +8,8 @@
       server  = express(),
       port    = process.env.PORT || 9000;
 
-  server.use(express.static(__dirname + '/../public'));
-  server.get('/', express.static(__dirname + '/../presentation'));
+  server.use('/vendor', express.static(__dirname + '/../vendor/'));
+  server.use('/', express.static(__dirname + '/../app'));
 
   server.listen(port, function() {
     console.log('server listening on port ' + port);

@@ -38,7 +38,51 @@
             <img class="circular" src="/img/me.jpg" width="100%"/>
          </div>
       </section>
+      <section>
+         <section>
+            <h2>Let's talk about MEAN</h2>
 
+            <p>
+               Mongo Express Angular Node
+               <img src="/img/meanstack2.jpg" alt=""/>
+            </p>
+         </section>
+         <section>
+            <h3>How to run a MEAN project</h3>
+
+            <p>The normal way</p>
+            <ul>
+               <li class="fragment" data-fragment-index="1">
+                  Download & install Node.js & npm
+               </li>
+               <li class="fragment" data-fragment-index="2">
+                  Download & install MongoDB
+               </li>
+               <li class="fragment" data-fragment-index="3">
+                  Install a package manager (Bower)
+               </li>
+               <li class="fragment" data-fragment-index="4">
+                  Install a task runner (gulp / grunt)
+               </li>
+               <li class="fragment" data-fragment-index="5">
+                  Run your app & enjoy
+               </li>
+            </ul>
+         </section>
+         <section>
+            <h3>How to run a MEAN project</h3>
+
+            <p>The docker & compose's way</p>
+            <ul>
+               <li class="fragment" data-fragment-index="1">
+                  Download & install Docker
+               </li>
+               <li class="fragment" data-fragment-index="2">
+                  Run your app & enjoy
+               </li>
+            </ul>
+         </section>
+      </section>
       <section>
          <section>
             <h2>What is Docker?</h2>
@@ -51,11 +95,25 @@
          <section>
             <h3>History</h3>
 
-            <p>Created by Solomon Hykes</p>
-            <ul>
-               <li>March 2013 : Initial release</li>
-               <li>April 2015 : Last stable release (1.6.0)</li>
-            </ul>
+            <p class="fragment" data-fragment-index="1">Created by Solomon Hykes</p>
+            <dl>
+               <dt class="fragment" data-fragment-index="2">March 2013</dt>
+               <dd class="fragment" data-fragment-index="2">Initial release & first github repo</dd>
+               <dt class="fragment" data-fragment-index="3">June 2013</dt>
+               <dd class="fragment" data-fragment-index="3">Join the linux foundation</dd>
+               <dt class="fragment" data-fragment-index="4">September 2013</dt>
+               <dd class="fragment" data-fragment-index="4">Red Hat and Docker announced a significant collaboration</dd>
+               <dt class="fragment" data-fragment-index="5">April 2015</dt>
+               <dd class="fragment" data-fragment-index="5">Last stable release (1.6.0)</dd>
+            </dl>
+
+            <aside class="notes">
+               <ul>
+                  <li>French guy from Epitech</li>
+                  <li>Co-founder of DotCloud</li>
+                  <li>Creator of the Docker Project</li>
+               </ul>
+            </aside>
          </section>
       </section>
 
@@ -65,8 +123,13 @@
 
             <p class="fragment" data-fragment-index="1">Based on LXC technology</p>
 
+            <p class="fragment" data-fragment-index="2">High-level API</p>
+
             <aside class="notes">
-               LXC (Linux Containers) is an operating-system-level virtualization environment for running multiple isolated Linux systems (containers) on a single Linux control host.
+               <ul>
+                  <li>LXC (Linux Containers) is an operating-system-level virtualization environment for running multiple isolated Linux systems (containers) on a single Linux control host.</li>
+                  <li>The docker API uses libcontainer (replacement to LXC), cgroup, namespaces</li>
+               </ul>
             </aside>
          </section>
          <section>
@@ -87,9 +150,13 @@
          <section>
             <h3>Containers construction</h3>
 
-            <p class="fragment" data-fragment-index="1"></p>
-            <!--<p class="fragment" data-fragment-index="2"><img src="/img/docker-filesystems-multilayer.png" style="width: 50%;"/></p>-->
+            <p class="fragment" data-fragment-index="1">Use the COW strategy</p>
             <p class="fragment" data-fragment-index="1"><img src="/img/what_is_layered_filesystems_sm.png" style="width: 50%;"/></p>
+            <aside class="notes">
+               <ul>
+                  <li>copy-on-write : </li>
+               </ul>
+            </aside>
          </section>
       </section>
       <section>
@@ -99,7 +166,11 @@
             <h3>Images</h3>
             <pre class="fragment" data-fragment-index="1"><code data-trim>$ docker pull ashdev/docker-spigot</code></pre>
 
-            <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker images </code></pre>
+            <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker images</code><code style="font-size: small" data-trim>REPOSITORY             TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+mongo                  3.0.3               077c6501ee18        5 weeks ago         257.8 MB
+mongo                  latest              077c6501ee18        5 weeks ago         257.8 MB
+ashdev/docker-spigot   latest              4f06527064a7        8 weeks ago         844.5 MB
+google/nodejs          latest              d579dbe02fb7        4 months ago        308.6 MB</code></pre>
          </section>
          <section>
             <h3>Running</h3>
@@ -114,17 +185,24 @@
 
             <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker run -d --link minecraft:minecraft --name=nginx nginx</code></pre>
 
-            <pre class="fragment" data-fragment-index="3"><code data-trim>$ docker ps
-<small>CONTAINER ID   IMAGE                 COMMAND              CREATED     STATUS      PORTS                          NAMES
-ac52abec9473   root/docker-nginx     "/bin/bash /etc/ngin 13 days ago Up 13 days  0.0.0.0:80->80/tcp             nginx
-17575849e34c   ashdev/docker-spigot  "/bin/sh -c /spigot_ 13 days ago Up 13 days  0.0.0.0:8123->8123/tcp, (...)  minecraft</small></code></pre>
+            <pre class="fragment" data-fragment-index="3"><code data-trim>$ docker ps</code><code style="font-size: small" data-trim>CONTAINER ID  IMAGE                 COMMAND                CREATED       STATUS       PORTS                   NAMES
+ac52abec9473  root/docker-nginx     "/bin/bash /etc/ngin   13 days ago   Up 13 days   0.0.0.0:80->80/tcp      nginx
+17575849e34c  ashdev/docker-spigot  "/bin/sh -c /spigot_   13 days ago   Up 13 days   0.0.0.0:8123->8123/tcp  minecraft</code></pre>
          </section>
          <section>
             <h3>Logs / Exec</h3>
 
-            <pre class="fragment" data-fragment-index="1"><code data-trim>$ docker logs minecraft</code></pre>
+            <pre class="fragment" data-fragment-index="1"><code data-trim>$ docker logs minecraft</code><code style="font-size: small" data-trim>...
+[11:02:12 INFO]: Bukkit version format changed. Version not checked.
+[11:02:12 INFO]: git-Spigot-2ec6f06-7722428 (MC: 1.8.3)
+[11:02:12 INFO]: 1.8.3-R0.1-SNAPSHOT
+[11:02:12 INFO]: Using locale en_US
+[11:02:12 INFO]: Essentials: Using PermissionsEx based permissions.
+[11:02:12 INFO]: Done (3.120s)! For help, type "help" or "?"
+[11:02:13 INFO]: [dynmap] Loading default resource pack
+...</code></pre>
 
-            <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker exec -it minecraft bash</code></pre>
+            <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker exec -it minecraft bash</code><code style="font-size: small" data-trim>root@17575849e34c:/#</code></pre>
          </section>
       </section>
       <section>
@@ -140,7 +218,6 @@ RUN npm install -g gulp bower
 ADD package.json /home/workspace/
 ADD bower.json /home/workspace/
 ADD Gulpfile.js /home/workspace/
-ADD src /home/workspace/
 
 RUN npm install
 RUN bower install --config.interactive=false --allow-root
@@ -171,6 +248,9 @@ CMD ["npm", "start"]</code></pre>
             <p class="fragment" data-fragment-index="1">Sample of docker-compose.yml</p>
             <pre class="fragment" data-fragment-index="1"><code data-trim>web:
    build: .
+   command: gulp serve
+   volumes:
+   - src/:/home/workspace/src
    links:
    - db
    ports:
