@@ -103,8 +103,8 @@
                <dd class="fragment" data-fragment-index="3">Join the linux foundation</dd>
                <dt class="fragment" data-fragment-index="4">September 2013</dt>
                <dd class="fragment" data-fragment-index="4">Red Hat and Docker announced a significant collaboration</dd>
-               <dt class="fragment" data-fragment-index="5">April 2015</dt>
-               <dd class="fragment" data-fragment-index="5">Last stable release (1.6.0)</dd>
+               <dt class="fragment" data-fragment-index="5">August 2015</dt>
+               <dd class="fragment" data-fragment-index="5">Last stable release (1.8.1)</dd>
             </dl>
 
             <aside class="notes">
@@ -250,7 +250,7 @@ CMD ["npm", "start"]</code></pre>
    build: .
    command: gulp serve
    volumes:
-   - src/:/home/workspace/src
+   - app/:/home/workspace/app
    links:
    - db
    ports:
@@ -262,7 +262,6 @@ db:
    image: mongo:latest
    ports:
    - "27017:27017"</code></pre>
-
          </section>
          <section>
             <section>
@@ -271,6 +270,8 @@ db:
                <pre class="fragment" data-fragment-index="1"><code data-trim>$ cd /wherever-your-compose-file-is/</code></pre>
 
                <pre class="fragment" data-fragment-index="2"><code data-trim>$ docker-compose up</code></pre>
+
+               <pre class="fragment" data-fragment-index="3"><code data-trim>($ docker-compose build)</code></pre>
             </section>
          </section>
       </section>

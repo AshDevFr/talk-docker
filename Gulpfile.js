@@ -5,7 +5,8 @@
 (function() {
   'use strict';
   var gulp    = require('gulp'),
-      nodemon = require('gulp-nodemon');
+      nodemon = require('gulp-nodemon'),
+      livereload = require('gulp-livereload');
 
   gulp.task('serve', function() {
     nodemon({
@@ -17,7 +18,13 @@
       });
   });
 
-  gulp.task('default', ['serve'], function() {
+  gulp.task('watch', function() {
+    gulp.watch('app/**/*', function() {
+      livereload();
+    });
+  });
+
+  gulp.task('default', ['serve', 'watch'], function() {
     console.log('Gulp power... ');
   });
 })();
