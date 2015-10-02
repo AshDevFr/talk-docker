@@ -2,7 +2,7 @@ web:
   build: .
   command: gulp serve
   volumes:
-   - app/:/home/workspace/app
-   - server/:/home/workspace/server
+   - ./app/:/home/workspace/app
+   - ./server/:/home/workspace/server
   ports:
    - "9000:9000"
