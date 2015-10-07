@@ -1,4 +1,4 @@
-FROM google/nodejs
+FROM ashdev/docker-nodejs
 MAINTAINER AshDev <ashdevfr@gmail.com>
 
 WORKDIR /home/workspace
