@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node server/server.js --debug",
-    "docker": "gulp; server/server.js --debug",
+    "start": "node ./server/server.js",
+    "docker": "gulp; ./server/server.js --debug",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
   "dependencies": {
