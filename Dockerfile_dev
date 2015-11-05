@@ -1,7 +1,7 @@
 FROM ashdev/docker-nodejs
 MAINTAINER AshDev <ashdevfr@gmail.com>
 
-ENV path /home/workspace
+ENV workdir_path /home/workspace
 WORKDIR ${workdir_path}
 
 RUN npm install -g gulp bower nodemon
