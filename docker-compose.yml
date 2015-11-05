@@ -1,5 +1,6 @@
 web:
   build: .
+  dockerfile: Dockerfile_dev
   command: gulp serve
   volumes:
    - ./app/:/home/workspace/app
