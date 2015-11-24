@@ -1,4 +1,4 @@
-FROM ashdev/docker-nodejs
+FROM ashdev/docker-nodejs:v4.2.2
 MAINTAINER AshDev <ashdevfr@gmail.com>
 
 ENV workdir_path /home/workspace
